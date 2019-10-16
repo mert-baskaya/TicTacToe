@@ -30,7 +30,7 @@
         app:layout_constraintTop_toTopOf="@id/activity_player_name_player_x_et" />
 
     <Button
-        android:id="@+id/activity_main_start_button"
+        android:id="@+id/activity_player_name_start_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"

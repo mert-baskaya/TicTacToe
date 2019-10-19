@@ -7,8 +7,8 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.GridLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.tictactoe.R;
 
@@ -21,6 +21,8 @@ public class PlayActivity extends AppCompatActivity implements View.OnClickListe
     private Button quit;
     private boolean playerXTurn = true;
     private int roundCount = 0;
+    private String playerXName;
+    private String playerYName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,8 +32,10 @@ public class PlayActivity extends AppCompatActivity implements View.OnClickListe
         Intent incomingIntent = getIntent();
         Bundle players = incomingIntent.getBundleExtra("play");
         if (players != null) {
-            playerX.setText(players.getString("playerX"));
-            playerY.setText(players.getString("playerY"));
+            playerXName = players.getString("playerX");
+            playerYName = players.getString("playerY");
+            playerX.setText(playerXName);
+            playerY.setText(playerYName);
         } else
             Log.e("player activity", "bundle is empty");
 
@@ -65,7 +69,6 @@ public class PlayActivity extends AppCompatActivity implements View.OnClickListe
 
         roundCount++;
 
-        //TODO reaction methods
         if (checkWin()) {
             if (playerXTurn)
                 playerXWins();
@@ -75,6 +78,18 @@ public class PlayActivity extends AppCompatActivity implements View.OnClickListe
             draw();
         else
             playerXTurn = !playerXTurn;
+    }
+
+    private void playerXWins() {
+        Toast.makeText(this, playerXName + " " + R.string.winner, Toast.LENGTH_SHORT).show();
+    }
+
+    private void playerYWins() {
+        Toast.makeText(this, playerYName + " " + R.string.winner, Toast.LENGTH_SHORT).show();
+    }
+
+    private void draw() {
+        Toast.makeText(this, R.string.draw, Toast.LENGTH_SHORT).show();
     }
 
     private boolean checkWin() {

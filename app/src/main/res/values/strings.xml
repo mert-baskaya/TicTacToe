@@ -7,4 +7,6 @@
     <string name="player_x">Player-X</string>
     <string name="player_y">Player-Y</string>
     <string name="no_name_error">Names can\'t be empty</string>
+    <string name="winner">won</string>
+    <string name="draw">Draw</string>
 </resources>

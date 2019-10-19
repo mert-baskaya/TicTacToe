@@ -1,4 +1,4 @@
-package com.example.tictactoe;
+package com.example.tictactoe.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.tictactoe.R;
 public class PlayerNameActivity extends AppCompatActivity {
 
     private EditText playerX;

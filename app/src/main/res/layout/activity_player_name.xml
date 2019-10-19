@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".PlayerNameActivity">
+    tools:context=".activity.PlayerNameActivity">
 
     <EditText
         android:id="@+id/activity_player_name_player_x_et"

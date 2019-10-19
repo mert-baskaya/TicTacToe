@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.GridLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -15,6 +16,7 @@ import com.example.tictactoe.R;
 public class PlayActivity extends AppCompatActivity implements View.OnClickListener {
 
     private Button[][] buttons = new Button[3][3];
+    private GridLayout playground;
     private TextView playerX;
     private TextView playerY;
     private Button restart;
@@ -28,6 +30,12 @@ public class PlayActivity extends AppCompatActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_play);
+
+        playground = findViewById(R.id.activity_play_container);
+        playerX = findViewById(R.id.activity_play_player_x_tw);
+        playerY = findViewById(R.id.activity_play_player_y_tw);
+        restart = findViewById(R.id.activity_play_restart_button);
+        quit = findViewById(R.id.activity_player_quit_button);
 
         Intent incomingIntent = getIntent();
         Bundle players = incomingIntent.getBundleExtra("play");
@@ -51,7 +59,7 @@ public class PlayActivity extends AppCompatActivity implements View.OnClickListe
         restart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                resetPlayground();
             }
         });
     }
@@ -82,14 +90,46 @@ public class PlayActivity extends AppCompatActivity implements View.OnClickListe
 
     private void playerXWins() {
         Toast.makeText(this, playerXName + " " + R.string.winner, Toast.LENGTH_SHORT).show();
+        lockButtons();
     }
 
     private void playerYWins() {
         Toast.makeText(this, playerYName + " " + R.string.winner, Toast.LENGTH_SHORT).show();
+        lockButtons();
     }
 
     private void draw() {
         Toast.makeText(this, R.string.draw, Toast.LENGTH_SHORT).show();
+        lockButtons();
+    }
+
+    private void lockButtons() {
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
+                buttons[i][j].setClickable(false);
+            }
+        }
+    }
+
+    private void unlockButtons() {
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
+                buttons[i][j].setClickable(true);
+            }
+        }
+    }
+
+    private void resetButtonContents() {
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
+                buttons[i][j].setText("");
+            }
+        }
+    }
+
+    private void resetPlayground() {
+        resetButtonContents();
+        unlockButtons();
     }
 
     private boolean checkWin() {

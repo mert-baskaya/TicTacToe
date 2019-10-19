@@ -25,6 +25,7 @@
         app:layout_constraintTop_toTopOf="@id/activity_play_player_x_tw" />
 
     <GridLayout
+        android:background="@color/colorPrimary"
         android:id="@+id/activity_play_container"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

@@ -52,6 +52,8 @@ public class PlayActivity extends AppCompatActivity implements View.OnClickListe
                 String buttonID = "btn_" + i + j;
                 int resID = getResources().getIdentifier(buttonID, "id", getPackageName());
                 buttons[i][j] = findViewById(resID);
+                //TODO styling
+                //buttons[i][j].set
                 buttons[i][j].setOnClickListener(this);
             }
         }
@@ -73,7 +75,7 @@ public class PlayActivity extends AppCompatActivity implements View.OnClickListe
         if (playerXTurn)
             ((Button) view).setText("X");
         else
-            ((Button) view).setText("Y");
+            ((Button) view).setText("O");
 
         roundCount++;
 

@@ -1,10 +1,10 @@
 package com.example.tictactoe.activity;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -28,8 +28,8 @@ public class PlayActivity extends AppCompatActivity implements View.OnClickListe
     private int roundCount = 0;
     private String playerXName;
     private String playerOName;
-    private int playerXPoint = 0;
-    private int playerOPoint = 0;
+    private int playerXPoints = 0;
+    private int playerOPoints = 0;
     private char winner;
 
     @Override
@@ -76,8 +76,8 @@ public class PlayActivity extends AppCompatActivity implements View.OnClickListe
         playerXScore.setText("");
         playerOScore.setText("");
         nextRound.setVisibility(View.INVISIBLE);
-        playerXPoint = 0;
-        playerOPoint = 0;
+        playerXPoints = 0;
+        playerOPoints = 0;
         resetPlayground();
     }
 
@@ -112,7 +112,7 @@ public class PlayActivity extends AppCompatActivity implements View.OnClickListe
     private void playerXWins() {
         Toast.makeText(this, playerXName + " " + getString(R.string.won), Toast.LENGTH_SHORT).show();
         lockButtons();
-        playerXPoint++;
+        playerXPoints++;
         playerXScore.setText(R.string.winner);
         winner = 'X';
         nextRound.setVisibility(View.VISIBLE);
@@ -122,7 +122,7 @@ public class PlayActivity extends AppCompatActivity implements View.OnClickListe
     private void playerOWins() {
         Toast.makeText(this, playerOName + " " + getString(R.string.won), Toast.LENGTH_SHORT).show();
         lockButtons();
-        playerOPoint++;
+        playerOPoints++;
         playerOScore.setText(R.string.winner);
         winner = 'O';
         nextRound.setVisibility(View.VISIBLE);
@@ -205,8 +205,8 @@ public class PlayActivity extends AppCompatActivity implements View.OnClickListe
     public void nextRound(View view) {
         playerXScore.setVisibility(View.VISIBLE);
         playerOScore.setVisibility(View.VISIBLE);
-        playerXScore.setText(Integer.toString(playerXPoint));
-        playerOScore.setText(Integer.toString(playerOPoint));
+        playerXScore.setText(Integer.toString(playerXPoints));
+        playerOScore.setText(Integer.toString(playerOPoints));
         resetPlayground();
         playerXTurn = winner == 'X';
     }
@@ -214,5 +214,23 @@ public class PlayActivity extends AppCompatActivity implements View.OnClickListe
     public void quit(View view) {
         finishAffinity();
         System.exit(0);
+    }
+
+    @Override
+    protected void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putInt("roundCount", roundCount);
+        outState.putInt("playerXPoints", playerXPoints);
+        outState.putInt("playerOPoints", playerOPoints);
+        outState.putBoolean("playerXTurn", playerXTurn);
+    }
+
+    @Override
+    protected void onRestoreInstanceState(@NonNull Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        roundCount = savedInstanceState.getInt("roundCount");
+        playerXPoints = savedInstanceState.getInt("playerXPoints");
+        playerOPoints = savedInstanceState.getInt("playerOPoints");
+        playerXTurn = savedInstanceState.getBoolean("playerXTurn");
     }
 }

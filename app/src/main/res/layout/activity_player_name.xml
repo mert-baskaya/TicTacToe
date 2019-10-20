@@ -10,19 +10,21 @@
         android:id="@+id/activity_player_name_player_x_et"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:hint="@string/player_x"
         android:layout_marginBottom="96dp"
+        android:freezesText="true"
+        android:hint="@string/player_x"
         android:importantForAutofill="no"
         android:inputType="text"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@id/activity_player_name_player_y_et"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/activity_player_name_player_y_et"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:freezesText="true"
         android:hint="@string/player_o"
         android:importantForAutofill="no"
         android:inputType="text"
@@ -32,11 +34,11 @@
 
     <Button
         android:id="@+id/activity_player_name_start_button"
+        style="@style/ButtonTheme"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:text="@string/start"
-        style="@style/ButtonTheme"
         app:layout_constraintEnd_toEndOf="@id/activity_player_name_player_y_et"
         app:layout_constraintStart_toStartOf="@id/activity_player_name_player_x_et"
         app:layout_constraintTop_toBottomOf="@id/activity_player_name_player_x_et" />

@@ -38,9 +38,9 @@ public class PlayActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_play);
 
         playerX = findViewById(R.id.activity_play_player_x_tv);
-        playerO = findViewById(R.id.activity_play_player_y_tv);
+        playerO = findViewById(R.id.activity_play_player_o_tv);
         playerXScore = findViewById(R.id.activity_play_player_x_score_tv);
-        playerOScore = findViewById(R.id.activity_play_player_y_score_tv);
+        playerOScore = findViewById(R.id.activity_play_player_o_score_tv);
         restart = findViewById(R.id.activity_play_restart_button);
         quit = findViewById(R.id.activity_player_quit_button);
         nextRound = findViewById(R.id.activity_play_next_round_button);

@@ -11,14 +11,10 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="AllowBackup,GoogleAppIndexingWarning">
-        <activity
-            android:name=".activity.PlayActivity"
-            android:screenOrientation="portrait">
+        <activity android:name=".activity.PlayActivity">
 
         </activity>
-        <activity
-            android:name=".activity.PlayerNameActivity"
-            android:screenOrientation="portrait">
+        <activity android:name=".activity.PlayerNameActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

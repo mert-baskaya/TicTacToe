@@ -11,6 +11,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="96dp"
+        android:freezesText="true"
         app:layout_constraintEnd_toStartOf="@id/activity_play_player_y_tv"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -20,6 +21,7 @@
         style="@style/PlayerNameTV"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:freezesText="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/activity_play_player_x_tv"
         app:layout_constraintTop_toTopOf="@id/activity_play_player_x_tv" />
@@ -29,6 +31,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
+        android:freezesText="true"
         app:layout_constraintEnd_toEndOf="@id/activity_play_player_x_tv"
         app:layout_constraintStart_toStartOf="@id/activity_play_player_x_tv"
         app:layout_constraintTop_toBottomOf="@id/activity_play_player_x_tv" />
@@ -38,6 +41,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
+        android:freezesText="true"
         app:layout_constraintEnd_toEndOf="@id/activity_play_player_y_tv"
         app:layout_constraintStart_toStartOf="@id/activity_play_player_y_tv"
         app:layout_constraintTop_toBottomOf="@id/activity_play_player_y_tv" />
@@ -57,55 +61,64 @@
             android:id="@+id/btn_00"
             style="@style/PlaygroundButtons"
             android:layout_width="@dimen/game_button_size"
-            android:layout_height="@dimen/game_button_size" />
+            android:layout_height="@dimen/game_button_size"
+            android:freezesText="true" />
 
         <Button
             android:id="@+id/btn_01"
             style="@style/PlaygroundButtons"
             android:layout_width="@dimen/game_button_size"
-            android:layout_height="@dimen/game_button_size" />
+            android:layout_height="@dimen/game_button_size"
+            android:freezesText="true" />
 
         <Button
             android:id="@+id/btn_02"
             style="@style/PlaygroundButtons"
             android:layout_width="@dimen/game_button_size"
-            android:layout_height="@dimen/game_button_size" />
+            android:layout_height="@dimen/game_button_size"
+            android:freezesText="true" />
 
         <Button
             android:id="@+id/btn_10"
             style="@style/PlaygroundButtons"
             android:layout_width="@dimen/game_button_size"
-            android:layout_height="@dimen/game_button_size" />
+            android:layout_height="@dimen/game_button_size"
+            android:freezesText="true" />
 
         <Button
             android:id="@+id/btn_11"
             style="@style/PlaygroundButtons"
             android:layout_width="@dimen/game_button_size"
-            android:layout_height="@dimen/game_button_size" />
+            android:layout_height="@dimen/game_button_size"
+            android:freezesText="true" />
 
         <Button
             android:id="@+id/btn_12"
             style="@style/PlaygroundButtons"
             android:layout_width="@dimen/game_button_size"
-            android:layout_height="@dimen/game_button_size" />
+            android:layout_height="@dimen/game_button_size"
+            android:freezesText="true" />
 
         <Button
             android:id="@+id/btn_20"
             style="@style/PlaygroundButtons"
             android:layout_width="@dimen/game_button_size"
-            android:layout_height="@dimen/game_button_size" />
+            android:layout_height="@dimen/game_button_size"
+            android:freezesText="true" />
 
         <Button
             android:id="@+id/btn_21"
             style="@style/PlaygroundButtons"
             android:layout_width="@dimen/game_button_size"
-            android:layout_height="@dimen/game_button_size" />
+            android:layout_height="@dimen/game_button_size"
+            android:freezesText="true" />
 
         <Button
             android:id="@+id/btn_22"
             style="@style/PlaygroundButtons"
             android:layout_width="@dimen/game_button_size"
-            android:layout_height="@dimen/game_button_size" />
+            android:layout_height="@dimen/game_button_size"
+            android:freezesText="true" />
 
 
     </GridLayout>

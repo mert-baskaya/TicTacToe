@@ -6,41 +6,41 @@
     android:orientation="vertical">
 
     <TextView
-        android:id="@+id/activity_play_player_x_tw"
+        android:id="@+id/activity_play_player_x_tv"
+        style="@style/PlayerNameTV"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="96dp"
-        android:text="@string/mockup_text_short"
-        app:layout_constraintEnd_toStartOf="@id/activity_play_player_y_tw"
+        app:layout_constraintEnd_toStartOf="@id/activity_play_player_y_tv"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/activity_play_player_y_tw"
+        android:id="@+id/activity_play_player_y_tv"
+        style="@style/PlayerNameTV"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/mockup_text_short"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/activity_play_player_x_tw"
-        app:layout_constraintTop_toTopOf="@id/activity_play_player_x_tw" />
+        app:layout_constraintStart_toEndOf="@id/activity_play_player_x_tv"
+        app:layout_constraintTop_toTopOf="@id/activity_play_player_x_tv" />
 
     <TextView
-        android:id="@+id/activity_play_player_x_score_tw"
+        android:id="@+id/activity_play_player_x_score_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        app:layout_constraintEnd_toEndOf="@id/activity_play_player_x_tw"
-        app:layout_constraintStart_toStartOf="@id/activity_play_player_x_tw"
-        app:layout_constraintTop_toBottomOf="@id/activity_play_player_x_tw" />
+        app:layout_constraintEnd_toEndOf="@id/activity_play_player_x_tv"
+        app:layout_constraintStart_toStartOf="@id/activity_play_player_x_tv"
+        app:layout_constraintTop_toBottomOf="@id/activity_play_player_x_tv" />
 
     <TextView
-        android:id="@+id/activity_play_player_y_score_tw"
+        android:id="@+id/activity_play_player_y_score_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        app:layout_constraintEnd_toEndOf="@id/activity_play_player_y_tw"
-        app:layout_constraintStart_toStartOf="@id/activity_play_player_y_tw"
-        app:layout_constraintTop_toBottomOf="@id/activity_play_player_y_tw" />
+        app:layout_constraintEnd_toEndOf="@id/activity_play_player_y_tv"
+        app:layout_constraintStart_toStartOf="@id/activity_play_player_y_tv"
+        app:layout_constraintTop_toBottomOf="@id/activity_play_player_y_tv" />
 
     <GridLayout
         android:id="@+id/activity_play_container"
@@ -113,12 +113,12 @@
     <Button
         android:id="@+id/activity_play_next_round_button"
         style="@style/ButtonTheme"
-        android:textColor="@color/colorPrimaryDark"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:onClick="nextRound"
         android:text="@string/next_round"
+        android:textColor="@color/colorPrimaryDark"
         android:visibility="invisible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -140,6 +140,7 @@
         style="@style/ButtonTheme"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:onClick="quit"
         android:text="@string/quit"
         android:textColor="@android:color/holo_red_light"
         app:layout_constraintEnd_toEndOf="parent"

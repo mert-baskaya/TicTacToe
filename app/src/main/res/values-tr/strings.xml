@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">TicTacToe</string>
+    <string name="draw">Berabere</string>
+    <string name="no_name_error">İsimler boş olamaz</string>
+    <string name="player_x">Oyuncu-X</string>
+    <string name="player_y">Oyuncu-Y</string>
+    <string name="quit">ÇIKIŞ</string>
+    <string name="restart">YENİDEN BAŞLA</string>
+    <string name="start">BAŞLA</string>
+    <string name="winner">kazandı</string>
+    <string name="mockup_text_short">Lorem ipsum.</string>
+    <string name="next_round">SONRAKİ TUR</string>
+</resources>

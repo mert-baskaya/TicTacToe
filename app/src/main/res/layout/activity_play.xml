@@ -9,7 +9,7 @@
         android:id="@+id/activity_play_player_x_tw"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="96dp"
         android:text="@string/mockup_text_short"
         app:layout_constraintEnd_toStartOf="@id/activity_play_player_y_tw"
         app:layout_constraintStart_toStartOf="parent"
@@ -24,8 +24,25 @@
         app:layout_constraintStart_toEndOf="@id/activity_play_player_x_tw"
         app:layout_constraintTop_toTopOf="@id/activity_play_player_x_tw" />
 
+    <TextView
+        android:id="@+id/activity_play_player_x_score_tw"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        app:layout_constraintEnd_toEndOf="@id/activity_play_player_x_tw"
+        app:layout_constraintStart_toStartOf="@id/activity_play_player_x_tw"
+        app:layout_constraintTop_toBottomOf="@id/activity_play_player_x_tw" />
+
+    <TextView
+        android:id="@+id/activity_play_player_y_score_tw"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        app:layout_constraintEnd_toEndOf="@id/activity_play_player_y_tw"
+        app:layout_constraintStart_toStartOf="@id/activity_play_player_y_tw"
+        app:layout_constraintTop_toBottomOf="@id/activity_play_player_y_tw" />
+
     <GridLayout
-        android:background="@color/colorPrimary"
         android:id="@+id/activity_play_container"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -38,46 +55,55 @@
 
         <Button
             android:id="@+id/btn_00"
+            style="@style/PlaygroundButtons"
             android:layout_width="@dimen/game_button_size"
             android:layout_height="@dimen/game_button_size" />
 
         <Button
             android:id="@+id/btn_01"
+            style="@style/PlaygroundButtons"
             android:layout_width="@dimen/game_button_size"
             android:layout_height="@dimen/game_button_size" />
 
         <Button
             android:id="@+id/btn_02"
+            style="@style/PlaygroundButtons"
             android:layout_width="@dimen/game_button_size"
             android:layout_height="@dimen/game_button_size" />
 
         <Button
             android:id="@+id/btn_10"
+            style="@style/PlaygroundButtons"
             android:layout_width="@dimen/game_button_size"
             android:layout_height="@dimen/game_button_size" />
 
         <Button
             android:id="@+id/btn_11"
+            style="@style/PlaygroundButtons"
             android:layout_width="@dimen/game_button_size"
             android:layout_height="@dimen/game_button_size" />
 
         <Button
             android:id="@+id/btn_12"
+            style="@style/PlaygroundButtons"
             android:layout_width="@dimen/game_button_size"
             android:layout_height="@dimen/game_button_size" />
 
         <Button
             android:id="@+id/btn_20"
+            style="@style/PlaygroundButtons"
             android:layout_width="@dimen/game_button_size"
             android:layout_height="@dimen/game_button_size" />
 
         <Button
             android:id="@+id/btn_21"
+            style="@style/PlaygroundButtons"
             android:layout_width="@dimen/game_button_size"
             android:layout_height="@dimen/game_button_size" />
 
         <Button
             android:id="@+id/btn_22"
+            style="@style/PlaygroundButtons"
             android:layout_width="@dimen/game_button_size"
             android:layout_height="@dimen/game_button_size" />
 
@@ -85,7 +111,22 @@
     </GridLayout>
 
     <Button
+        android:id="@+id/activity_play_next_round_button"
+        style="@style/ButtonTheme"
+        android:textColor="@color/colorPrimaryDark"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:onClick="nextRound"
+        android:text="@string/next_round"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/activity_play_container" />
+
+    <Button
         android:id="@+id/activity_play_restart_button"
+        style="@style/ButtonTheme"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
@@ -96,9 +137,11 @@
 
     <Button
         android:id="@+id/activity_player_quit_button"
+        style="@style/ButtonTheme"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/quit"
+        android:textColor="@android:color/holo_red_light"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/activity_play_restart_button"
         app:layout_constraintTop_toTopOf="@id/activity_play_restart_button" />

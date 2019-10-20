@@ -16,11 +16,11 @@ import com.example.tictactoe.R;
 public class PlayActivity extends AppCompatActivity implements View.OnClickListener {
 
     private Button[][] buttons = new Button[3][3];
-    private GridLayout playground;
     private TextView playerX;
     private TextView playerY;
     private Button restart;
     private Button quit;
+    private Button nextRound;
     private boolean playerXTurn = true;
     private int roundCount = 0;
     private String playerXName;
@@ -31,11 +31,11 @@ public class PlayActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_play);
 
-        playground = findViewById(R.id.activity_play_container);
         playerX = findViewById(R.id.activity_play_player_x_tw);
         playerY = findViewById(R.id.activity_play_player_y_tw);
         restart = findViewById(R.id.activity_play_restart_button);
         quit = findViewById(R.id.activity_player_quit_button);
+        nextRound = findViewById(R.id.activity_play_next_round_button);
 
         Intent incomingIntent = getIntent();
         Bundle players = incomingIntent.getBundleExtra("play");
@@ -52,8 +52,6 @@ public class PlayActivity extends AppCompatActivity implements View.OnClickListe
                 String buttonID = "btn_" + i + j;
                 int resID = getResources().getIdentifier(buttonID, "id", getPackageName());
                 buttons[i][j] = findViewById(resID);
-                //TODO styling
-                //buttons[i][j].set
                 buttons[i][j].setOnClickListener(this);
             }
         }
@@ -72,10 +70,13 @@ public class PlayActivity extends AppCompatActivity implements View.OnClickListe
             return;
         }
 
-        if (playerXTurn)
+        if (playerXTurn) {
             ((Button) view).setText("X");
-        else
+            // ((Button) view).setCompoundDrawables(getResources().getDrawable(R.drawable.ic_cross_80dp),null,null,null);
+        } else {
             ((Button) view).setText("O");
+            // ((Button) view).setCompoundDrawables(getResources().getDrawable(R.drawable.ic_circle_80dp), null, null, null);
+        }
 
         roundCount++;
 
@@ -91,18 +92,21 @@ public class PlayActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void playerXWins() {
-        Toast.makeText(this, playerXName + " " + R.string.winner, Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, playerXName + " " + getString(R.string.winner), Toast.LENGTH_SHORT).show();
         lockButtons();
+        nextRound.setVisibility(View.VISIBLE);
     }
 
     private void playerYWins() {
-        Toast.makeText(this, playerYName + " " + R.string.winner, Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, playerYName + " " + getString(R.string.winner), Toast.LENGTH_SHORT).show();
         lockButtons();
+        nextRound.setVisibility(View.VISIBLE);
     }
 
     private void draw() {
         Toast.makeText(this, R.string.draw, Toast.LENGTH_SHORT).show();
         lockButtons();
+        nextRound.setVisibility(View.VISIBLE);
     }
 
     private void lockButtons() {
@@ -131,6 +135,8 @@ public class PlayActivity extends AppCompatActivity implements View.OnClickListe
 
     private void resetPlayground() {
         resetButtonContents();
+        playerXTurn = true;
+        roundCount = 0;
         unlockButtons();
     }
 
@@ -168,5 +174,9 @@ public class PlayActivity extends AppCompatActivity implements View.OnClickListe
         return field[0][2].equals(field[1][1])
                 && field[0][2].equals(field[2][0])
                 && !field[0][2].equals("");
+    }
+
+    public void nextRound(View view) {
+        // TODO
     }
 }

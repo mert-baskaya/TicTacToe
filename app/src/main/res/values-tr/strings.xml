@@ -4,11 +4,11 @@
     <string name="draw">Berabere</string>
     <string name="no_name_error">İsimler boş olamaz</string>
     <string name="player_x">Oyuncu-X</string>
-    <string name="player_y">Oyuncu-Y</string>
+    <string name="player_o">Oyuncu-O</string>
     <string name="quit">ÇIKIŞ</string>
     <string name="restart">YENİDEN BAŞLA</string>
     <string name="start">BAŞLA</string>
-    <string name="winner">kazandı</string>
-    <string name="mockup_text_short">Lorem ipsum.</string>
+    <string name="winner">Kazanan!</string>
     <string name="next_round">SONRAKİ TUR</string>
+    <string name="won">kazandı</string>
 </resources>

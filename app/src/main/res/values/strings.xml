@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="winner">won</string>
+    <string name="winner">Winner!</string>
     <string name="app_name">TicTacToe</string>
-    <string name="mockup_text_short">Lorem ipsum.</string>
     <string name="start">START</string>
     <string name="restart">RESTART</string>
     <string name="quit">QUIT</string>
     <string name="player_x">Player-X</string>
-    <string name="player_y">Player-O</string>
+    <string name="player_o">Player-O</string>
     <string name="no_name_error">Names can\'t be empty</string>
     <string name="draw">Draw</string>
     <string name="next_round">NEXT ROUND</string>
+    <string name="won">won</string>
 </resources>

@@ -2,12 +2,13 @@ package com.example.tictactoe.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.GridLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -17,22 +18,29 @@ public class PlayActivity extends AppCompatActivity implements View.OnClickListe
 
     private Button[][] buttons = new Button[3][3];
     private TextView playerX;
-    private TextView playerY;
+    private TextView playerO;
+    private TextView playerXScore;
+    private TextView playerOScore;
     private Button restart;
     private Button quit;
     private Button nextRound;
     private boolean playerXTurn = true;
     private int roundCount = 0;
     private String playerXName;
-    private String playerYName;
+    private String playerOName;
+    private int playerXPoint = 0;
+    private int playerOPoint = 0;
+    private char winner;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_play);
 
-        playerX = findViewById(R.id.activity_play_player_x_tw);
-        playerY = findViewById(R.id.activity_play_player_y_tw);
+        playerX = findViewById(R.id.activity_play_player_x_tv);
+        playerO = findViewById(R.id.activity_play_player_y_tv);
+        playerXScore = findViewById(R.id.activity_play_player_x_score_tv);
+        playerOScore = findViewById(R.id.activity_play_player_y_score_tv);
         restart = findViewById(R.id.activity_play_restart_button);
         quit = findViewById(R.id.activity_player_quit_button);
         nextRound = findViewById(R.id.activity_play_next_round_button);
@@ -41,9 +49,9 @@ public class PlayActivity extends AppCompatActivity implements View.OnClickListe
         Bundle players = incomingIntent.getBundleExtra("play");
         if (players != null) {
             playerXName = players.getString("playerX");
-            playerYName = players.getString("playerY");
+            playerOName = players.getString("playerO");
             playerX.setText(playerXName);
-            playerY.setText(playerYName);
+            playerO.setText(playerOName);
         } else
             Log.e("player activity", "bundle is empty");
 
@@ -59,9 +67,18 @@ public class PlayActivity extends AppCompatActivity implements View.OnClickListe
         restart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                resetPlayground();
+                resetGame();
             }
         });
+    }
+
+    public void resetGame() {
+        playerXScore.setText("");
+        playerOScore.setText("");
+        nextRound.setVisibility(View.INVISIBLE);
+        playerXPoint = 0;
+        playerOPoint = 0;
+        resetPlayground();
     }
 
     @Override
@@ -84,22 +101,30 @@ public class PlayActivity extends AppCompatActivity implements View.OnClickListe
             if (playerXTurn)
                 playerXWins();
             else
-                playerYWins();
+                playerOWins();
         } else if (roundCount == 9)
             draw();
         else
             playerXTurn = !playerXTurn;
     }
 
+    @SuppressLint("SetTextI18n")
     private void playerXWins() {
-        Toast.makeText(this, playerXName + " " + getString(R.string.winner), Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, playerXName + " " + getString(R.string.won), Toast.LENGTH_SHORT).show();
         lockButtons();
+        playerXPoint++;
+        playerXScore.setText(R.string.winner);
+        winner = 'X';
         nextRound.setVisibility(View.VISIBLE);
     }
 
-    private void playerYWins() {
-        Toast.makeText(this, playerYName + " " + getString(R.string.winner), Toast.LENGTH_SHORT).show();
+    @SuppressLint("SetTextI18n")
+    private void playerOWins() {
+        Toast.makeText(this, playerOName + " " + getString(R.string.won), Toast.LENGTH_SHORT).show();
         lockButtons();
+        playerOPoint++;
+        playerOScore.setText(R.string.winner);
+        winner = 'O';
         nextRound.setVisibility(View.VISIBLE);
     }
 
@@ -176,7 +201,18 @@ public class PlayActivity extends AppCompatActivity implements View.OnClickListe
                 && !field[0][2].equals("");
     }
 
+    @SuppressLint("SetTextI18n")
     public void nextRound(View view) {
-        // TODO
+        playerXScore.setVisibility(View.VISIBLE);
+        playerOScore.setVisibility(View.VISIBLE);
+        playerXScore.setText(Integer.toString(playerXPoint));
+        playerOScore.setText(Integer.toString(playerOPoint));
+        resetPlayground();
+        playerXTurn = winner == 'X';
+    }
+
+    public void quit(View view) {
+        finishAffinity();
+        System.exit(0);
     }
 }

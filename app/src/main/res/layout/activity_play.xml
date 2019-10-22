@@ -6,6 +6,30 @@
     android:orientation="vertical">
 
     <TextView
+        android:id="@+id/activity_play_player_x_notifier_tv"
+        style="@style/PlayerNameTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:freezesText="true"
+        android:text="@string/x"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@id/activity_play_player_x_tv"
+        app:layout_constraintEnd_toEndOf="@id/activity_play_player_x_tv"
+        app:layout_constraintStart_toStartOf="@id/activity_play_player_x_tv" />
+
+    <TextView
+        android:id="@+id/activity_play_player_o_notifier_tv"
+        style="@style/PlayerNameTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/o"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="@id/activity_play_player_x_notifier_tv"
+        app:layout_constraintEnd_toEndOf="@id/activity_play_player_o_tv"
+        app:layout_constraintStart_toStartOf="@id/activity_play_player_o_tv" />
+
+    <TextView
         android:id="@+id/activity_play_player_x_tv"
         style="@style/PlayerNameTV"
         android:layout_width="wrap_content"

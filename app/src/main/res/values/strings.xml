@@ -11,4 +11,6 @@
     <string name="draw">Draw</string>
     <string name="next_round">NEXT ROUND</string>
     <string name="won">won</string>
+    <string name="x">X</string>
+    <string name="o">O</string>
 </resources>

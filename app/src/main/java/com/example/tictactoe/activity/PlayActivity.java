@@ -21,6 +21,8 @@ public class PlayActivity extends AppCompatActivity implements View.OnClickListe
     private TextView playerO;
     private TextView playerXScore;
     private TextView playerOScore;
+    private TextView playerXNotifier;
+    private TextView playerONotifier;
     private Button restart;
     private Button quit;
     private Button nextRound;
@@ -41,6 +43,8 @@ public class PlayActivity extends AppCompatActivity implements View.OnClickListe
         playerO = findViewById(R.id.activity_play_player_o_tv);
         playerXScore = findViewById(R.id.activity_play_player_x_score_tv);
         playerOScore = findViewById(R.id.activity_play_player_o_score_tv);
+        playerXNotifier = findViewById(R.id.activity_play_player_x_notifier_tv);
+        playerONotifier = findViewById(R.id.activity_play_player_o_notifier_tv);
         restart = findViewById(R.id.activity_play_restart_button);
         quit = findViewById(R.id.activity_player_quit_button);
         nextRound = findViewById(R.id.activity_play_next_round_button);
@@ -89,8 +93,13 @@ public class PlayActivity extends AppCompatActivity implements View.OnClickListe
 
         if (playerXTurn) {
             ((Button) view).setText("X");
+            playerONotifier.setTextColor(getResources().getColor(R.color.colorPrimary));
+            playerXNotifier.setTextColor(getResources().getColor(R.color.colorBlack));
             // ((Button) view).setCompoundDrawables(getResources().getDrawable(R.drawable.ic_cross_80dp),null,null,null);
         } else {
+            playerXNotifier.setTextColor(getResources().getColor(R.color.colorPrimary));
+            playerONotifier.setTextColor(getResources().getColor(R.color.colorBlack));
+
             ((Button) view).setText("O");
             // ((Button) view).setCompoundDrawables(getResources().getDrawable(R.drawable.ic_circle_80dp), null, null, null);
         }
@@ -106,6 +115,18 @@ public class PlayActivity extends AppCompatActivity implements View.OnClickListe
             draw();
         else
             playerXTurn = !playerXTurn;
+    }
+
+    public void setNotifiers(int state) {
+        switch (state) {
+            case (0):
+                playerXNotifier.setTextColor(getResources().getColor(R.color.colorBlack));
+                playerONotifier.setTextColor(getResources().getColor(R.color.colorBlack));
+                break;
+            case (1):
+
+                break;
+        }
     }
 
     @SuppressLint("SetTextI18n")
@@ -163,6 +184,7 @@ public class PlayActivity extends AppCompatActivity implements View.OnClickListe
         playerXTurn = true;
         roundCount = 0;
         unlockButtons();
+
     }
 
     private boolean checkWin() {

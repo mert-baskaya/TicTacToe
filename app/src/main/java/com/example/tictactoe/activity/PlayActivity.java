@@ -93,13 +93,10 @@ public class PlayActivity extends AppCompatActivity implements View.OnClickListe
 
         if (playerXTurn) {
             ((Button) view).setText("X");
-            playerONotifier.setTextColor(getResources().getColor(R.color.colorPrimary));
-            playerXNotifier.setTextColor(getResources().getColor(R.color.colorBlack));
+            setNotifiers(1);
             // ((Button) view).setCompoundDrawables(getResources().getDrawable(R.drawable.ic_cross_80dp),null,null,null);
         } else {
-            playerXNotifier.setTextColor(getResources().getColor(R.color.colorPrimary));
-            playerONotifier.setTextColor(getResources().getColor(R.color.colorBlack));
-
+            setNotifiers(2);
             ((Button) view).setText("O");
             // ((Button) view).setCompoundDrawables(getResources().getDrawable(R.drawable.ic_circle_80dp), null, null, null);
         }
@@ -124,8 +121,12 @@ public class PlayActivity extends AppCompatActivity implements View.OnClickListe
                 playerONotifier.setTextColor(getResources().getColor(R.color.colorBlack));
                 break;
             case (1):
-
+                playerXNotifier.setTextColor(getResources().getColor(R.color.colorPrimary));
+                playerONotifier.setTextColor(getResources().getColor(R.color.colorBlack));
                 break;
+            case (2):
+                playerXNotifier.setTextColor(getResources().getColor(R.color.colorBlack));
+                playerONotifier.setTextColor(getResources().getColor(R.color.colorPrimary));
         }
     }
 

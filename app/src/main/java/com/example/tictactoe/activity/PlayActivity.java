@@ -21,8 +21,9 @@ public class PlayActivity extends AppCompatActivity implements View.OnClickListe
     private TextView playerO;
     private TextView playerXScore;
     private TextView playerOScore;
+    private TextView playerXNotifier;
+    private TextView playerONotifier;
     private Button restart;
-    private Button quit;
     private Button nextRound;
     private boolean playerXTurn = true;
     private int roundCount = 0;
@@ -38,11 +39,12 @@ public class PlayActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_play);
 
         playerX = findViewById(R.id.activity_play_player_x_tv);
-        playerO = findViewById(R.id.activity_play_player_y_tv);
+        playerO = findViewById(R.id.activity_play_player_o_tv);
         playerXScore = findViewById(R.id.activity_play_player_x_score_tv);
-        playerOScore = findViewById(R.id.activity_play_player_y_score_tv);
+        playerOScore = findViewById(R.id.activity_play_player_o_score_tv);
+        playerXNotifier = findViewById(R.id.activity_play_player_x_notifier_tv);
+        playerONotifier = findViewById(R.id.activity_play_player_o_notifier_tv);
         restart = findViewById(R.id.activity_play_restart_button);
-        quit = findViewById(R.id.activity_player_quit_button);
         nextRound = findViewById(R.id.activity_play_next_round_button);
 
         Intent incomingIntent = getIntent();
@@ -63,7 +65,7 @@ public class PlayActivity extends AppCompatActivity implements View.OnClickListe
                 buttons[i][j].setOnClickListener(this);
             }
         }
-
+        setNotifiers(1);
         restart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -72,6 +74,7 @@ public class PlayActivity extends AppCompatActivity implements View.OnClickListe
         });
     }
 
+    //Resets the ui except player names
     public void resetGame() {
         playerXScore.setText("");
         playerOScore.setText("");
@@ -81,6 +84,7 @@ public class PlayActivity extends AppCompatActivity implements View.OnClickListe
         resetPlayground();
     }
 
+    //Gets called on every playground button click. Manages the game by setting the button characters, changing the round count and turns according to the game logic
     @Override
     public void onClick(View view) {
         if (!((Button) view).getText().toString().equals("")) {
@@ -89,8 +93,10 @@ public class PlayActivity extends AppCompatActivity implements View.OnClickListe
 
         if (playerXTurn) {
             ((Button) view).setText("X");
+            setNotifiers(2);
             // ((Button) view).setCompoundDrawables(getResources().getDrawable(R.drawable.ic_cross_80dp),null,null,null);
         } else {
+            setNotifiers(1);
             ((Button) view).setText("O");
             // ((Button) view).setCompoundDrawables(getResources().getDrawable(R.drawable.ic_circle_80dp), null, null, null);
         }
@@ -108,6 +114,24 @@ public class PlayActivity extends AppCompatActivity implements View.OnClickListe
             playerXTurn = !playerXTurn;
     }
 
+    //Manages the turn notifiers according to the input
+    public void setNotifiers(int state) {
+        switch (state) {
+            case (0):
+                playerXNotifier.setTextColor(getResources().getColor(R.color.colorBlack));
+                playerONotifier.setTextColor(getResources().getColor(R.color.colorBlack));
+                break;
+            case (1):
+                playerXNotifier.setTextColor(getResources().getColor(R.color.colorPrimary));
+                playerONotifier.setTextColor(getResources().getColor(R.color.colorBlack));
+                break;
+            case (2):
+                playerXNotifier.setTextColor(getResources().getColor(R.color.colorBlack));
+                playerONotifier.setTextColor(getResources().getColor(R.color.colorPrimary));
+        }
+    }
+
+    //If first player wins, stops users from playing and displays the state with a toast message and adds a point to the first player.
     @SuppressLint("SetTextI18n")
     private void playerXWins() {
         Toast.makeText(this, playerXName + " " + getString(R.string.won), Toast.LENGTH_SHORT).show();
@@ -116,8 +140,10 @@ public class PlayActivity extends AppCompatActivity implements View.OnClickListe
         playerXScore.setText(R.string.winner);
         winner = 'X';
         nextRound.setVisibility(View.VISIBLE);
+        nextRound.setClickable(true);
     }
 
+    //If second player wins, stops users from playing and displays the state with a toast message and adds a point to the second player.
     @SuppressLint("SetTextI18n")
     private void playerOWins() {
         Toast.makeText(this, playerOName + " " + getString(R.string.won), Toast.LENGTH_SHORT).show();
@@ -126,14 +152,19 @@ public class PlayActivity extends AppCompatActivity implements View.OnClickListe
         playerOScore.setText(R.string.winner);
         winner = 'O';
         nextRound.setVisibility(View.VISIBLE);
+        nextRound.setClickable(true);
     }
 
+    //After 9 non-winning turns, stops users from playing and displays the state with a toast message
     private void draw() {
         Toast.makeText(this, R.string.draw, Toast.LENGTH_SHORT).show();
         lockButtons();
         nextRound.setVisibility(View.VISIBLE);
+        nextRound.setClickable(true);
     }
 
+
+    //Locks the buttons
     private void lockButtons() {
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 3; j++) {
@@ -142,6 +173,7 @@ public class PlayActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 
+    //Unlocks the locked buttons
     private void unlockButtons() {
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 3; j++) {
@@ -150,6 +182,7 @@ public class PlayActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 
+    //Sets board buttons to empty strings
     private void resetButtonContents() {
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 3; j++) {
@@ -158,13 +191,18 @@ public class PlayActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 
+    //Resets the playground
     private void resetPlayground() {
         resetButtonContents();
+        setNotifiers(0);
         playerXTurn = true;
         roundCount = 0;
         unlockButtons();
+        nextRound.setClickable(false);
+
     }
 
+    //Game logic
     private boolean checkWin() {
         String[][] field = new String[3][3];
 
@@ -201,6 +239,7 @@ public class PlayActivity extends AppCompatActivity implements View.OnClickListe
                 && !field[0][2].equals("");
     }
 
+    //Manages the next round button and allows to play multiple rounds while another function tracks points
     @SuppressLint("SetTextI18n")
     public void nextRound(View view) {
         playerXScore.setVisibility(View.VISIBLE);
@@ -211,11 +250,13 @@ public class PlayActivity extends AppCompatActivity implements View.OnClickListe
         playerXTurn = winner == 'X';
     }
 
+    //Quits from the app
     public void quit(View view) {
         finishAffinity();
         System.exit(0);
     }
 
+    //Saves state before screen rotation
     @Override
     protected void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
@@ -225,6 +266,7 @@ public class PlayActivity extends AppCompatActivity implements View.OnClickListe
         outState.putBoolean("playerXTurn", playerXTurn);
     }
 
+    //Loads state after screen rotation
     @Override
     protected void onRestoreInstanceState(@NonNull Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);

@@ -15,6 +15,7 @@
         android:hint="@string/player_x"
         android:importantForAutofill="no"
         android:inputType="text"
+        app:layout_constrainedWidth="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@id/activity_player_name_player_y_et"
         app:layout_constraintStart_toStartOf="parent"
@@ -28,6 +29,7 @@
         android:hint="@string/player_o"
         android:importantForAutofill="no"
         android:inputType="text"
+        app:layout_constrainedWidth="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/activity_player_name_player_x_et"
         app:layout_constraintTop_toTopOf="@id/activity_player_name_player_x_et" />
